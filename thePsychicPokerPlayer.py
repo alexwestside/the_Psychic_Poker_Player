@@ -13,6 +13,8 @@ stdin = ['TH JH QC QD QS QH KH AH 2S 6S',
          '6C 9C 8C 2D 7C 2H TC 4C 9S AH',
          '3D 5S 2H QD TD 6S KH 9H AD QH']
 
+solve = None
+
 def solve_print(line, solve):
     print("Hand: ", end='')
     print(line[0:5], end='')
@@ -22,6 +24,8 @@ def solve_print(line, solve):
     print(solve)
 
 def solution(hand, deck):
+
+
 
 
 
