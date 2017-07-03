@@ -40,9 +40,16 @@ def check_straight_flush(solve, list):
 def check(solve):
     return 0
 
-def solution(solve, hand, deck, i, j, k, l):
+def solution(solve, hand, deck, i, j):
     while i < len(hand):
+        solve[i] = deck[j]
         while j < len(deck):
+            if solve[j] == None:
+                solve[j] = hand[j]
+            j+=1
+        i+=1
+        solution(init_solve_list(solve, len(deck)), hand, deck, i, 0)
+
 
 
 
@@ -62,4 +69,4 @@ for line in stdin:
         solve_print(combination, hand, deck)
     n = 1
     # solution(solve, hand, deck[0:len(deck) - n], n, 0, 0, 0)
-    solution(init_solve_list(solve, len(deck)), hand, deck, 0, 0, 0, 0)
+    solution(init_solve_list(solve, len(deck)), hand, deck, 0, 0)
