@@ -3,7 +3,6 @@
 from __future__ import print_function
 import sys
 
-
 # stdin = ['A B C 1 2 3']
 stdin = ['TH JH QC QD QS QH KH AH 2S 6S']
 #          '2H 2S 3H 3S 3C 2D 3D 6C 9C TH',
@@ -15,21 +14,10 @@ stdin = ['TH JH QC QD QS QH KH AH 2S 6S']
 #          '6C 9C 8C 2D 7C 2H TC 4C 9S AH',
 #          '3D 5S 2H QD TD 6S KH 9H AD QH']
 
-combination = None
 fp = open('./test.txt', 'a')
 
 class CardsCombination:
-    # comb_1 = {1: 'straight-flush'}
-    # comb_2 = {2: 'four-of-a-kind'}
-    # comb_3 = {3: 'full-house'}
-    # comb_4 = {4: 'flush'}
-    # comb_5 = {5: 'straight'}
-    # comb_6 = {6: 'three-of-a-kind'}
-    # comb_7 = {7: 'two-pairs'}
-    # comb_8 = {8: 'one-pair'}
-    # comb_9 = {9: 'highest-card'}
-
-    combination = {'full-house': 3}
+    combination = {None: 0}
     combinations = {1: {'straight-flush': 1},
                     2: {'four-of-a-kind': 2},
                     3: {'full-house': 3},
@@ -39,7 +27,6 @@ class CardsCombination:
                     7: {'two-pairs': 7},
                     8: {'one-pair': 8},
                     9: {'highest-card': 9}}
-
 
     def make_choice(self, id):
         if self.combination.keys()[0] == None:
@@ -52,7 +39,7 @@ class CardsCombination:
 
     def find_combination(self, solve, hand, deck):
         if self.straight_flush(solve) != 0:
-            self.solve_print(solve, hand, deck)
+            self.solve_print(self.combinations.get(1).values()[0], hand, deck)
         elif self.four_of_a_kind(solve) != 0:
             self.make_choice(2)
         elif self.full_house(solve) != 0:
@@ -108,9 +95,11 @@ class CardsCombination:
         print(solve)
         exit(0)
 
-def check(solve, hand, deck):
-    res = CardsCombination()
-    res.find_combination(solve, hand, deck)
+res = CardsCombination()
+
+# def check(solve, hand, deck):
+#     res = CardsCombination()
+#     res.find_combination(solve, hand, deck)
 
 
 def solution(hand, deck, _hand=None, _deck=None):
@@ -128,7 +117,8 @@ def solution(hand, deck, _hand=None, _deck=None):
                     solve[i] = _deck[0]
                     # print(solve, file=fp)
                     # print(solve)
-                    check(solve, hand, deck)
+                    # check(solve, hand, deck)
+                    res.find_combination(solve, hand, deck)
                 solution(hand, deck, solve, _deck[1:])
     return
 
@@ -138,3 +128,4 @@ for line in stdin:
     hand = line[0:len(line)/2]
     deck = line[len(line)/2:len(line)]
     solution(hand, deck)
+    res.solve_print(res.combination.values()[0], hand, deck)
