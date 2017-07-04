@@ -19,76 +19,99 @@ combination = None
 fp = open('./test.txt', 'a')
 
 class CardsCombination:
-    comb_1 = 'straight-flush'
-    comb_2 = 'four-of-a-kind'
-    comb_3 = 'full-house'
-    comb_4 = 'flush'
-    comb_5 = 'straight'
-    comb_6 = 'three-of-a-kind'
-    comb_7 = 'two-pairs'
-    comb_8 = 'one-pair'
-    comb_9 = 'highest-card'
-    combination = None
+    # comb_1 = {1: 'straight-flush'}
+    # comb_2 = {2: 'four-of-a-kind'}
+    # comb_3 = {3: 'full-house'}
+    # comb_4 = {4: 'flush'}
+    # comb_5 = {5: 'straight'}
+    # comb_6 = {6: 'three-of-a-kind'}
+    # comb_7 = {7: 'two-pairs'}
+    # comb_8 = {8: 'one-pair'}
+    # comb_9 = {9: 'highest-card'}
 
-    def find_combination(self):
-        if self.straight_flush() == 1:
-            pass
-        elif self.four_of_a_kind() == 1:
-            pass
-        elif self.full_house() == 1:
-            pass
-        elif self.flush() == 1:
-            pass
-        elif self.straight() == 1:
-            pass
-        elif self.three_of_a_kind() == 1:
-            pass
-        elif self.two_pairs() == 1:
-            pass
-        elif self.one_pair() == 1:
-            pass
-        elif self.highest_card() == 1:
-            pass
+    combination = {'full-house': 3}
+    combinations = {1: {'straight-flush': 1},
+                    2: {'four-of-a-kind': 2},
+                    3: {'full-house': 3},
+                    4: {'flush': 4},
+                    5: {'straight': 5},
+                    6: {'three-of-a-kind': 6},
+                    7: {'two-pairs': 7},
+                    8: {'one-pair': 8},
+                    9: {'highest-card': 9}}
 
-    def straight_flush(self):
-        return (1)
 
-    def four_of_a_kind(self):
-        return (1)
+    def make_choice(self, id):
+        if self.combination.keys()[0] == None:
+            self.combination.clear()
+            self.combination.update(self.combinations.get(id))
+        else:
+            if self.combination.values()[0] > self.combinations.get(id).values()[0]:
+                self.combination.clear()
+                self.combination.update(self.combinations.get(id))
 
-    def full_house(self):
-        return (1)
+    def find_combination(self, solve, hand, deck):
+        if self.straight_flush(solve) != 0:
+            self.solve_print(solve, hand, deck)
+        elif self.four_of_a_kind(solve) != 0:
+            self.make_choice(2)
+        elif self.full_house(solve) != 0:
+            self.make_choice(3)
+        elif self.flush(solve) != 0:
+            self.make_choice(4)
+        elif self.straight(solve) != 0:
+            self.make_choice(5)
+        elif self.three_of_a_kind(solve) != 0:
+            self.make_choice(6)
+        elif self.two_pairs(solve) != 0:
+            self.make_choice(7)
+        elif self.one_pair(solve) != 0:
+            self.make_choice(8)
+        elif self.highest_card(solve) != 0:
+            self.make_choice(9)
 
-    def flush(self):
-        return (1)
+    def straight_flush(self, solve):
+        s = solve
+        return (0)
 
-    def straight(self):
-        return (1)
+    def four_of_a_kind(self, solve):
+        return (2)
 
-    def three_of_a_kind(self):
-        return (1)
+    def full_house(self, solve):
+        return (3)
 
-    def two_pairs(self):
-        return (1)
+    def flush(self, solve):
+        return (4)
 
-    def one_pair(self):
-        return (1)
+    def straight(self, solve):
+        return (5)
 
-    def highest_card(self):
-        return (1)
+    def three_of_a_kind(self, solve):
+        return (6)
+
+    def two_pairs(self, solve):
+        return (7)
+
+    def one_pair(self, solve):
+        return (8)
+
+    def highest_card(self, solve):
+        return (9)
     pass
 
-    def solve_print(self, hand, deck):
+    def solve_print(self, solve, hand, deck):
         print("Hand: ", end='')
         print(hand, end='')
         print(" Deck: ", end='')
         print(deck, end='')
         print(" Best hand: ", end='')
-        print(combination)
+        print(solve)
         exit(0)
 
-def check(solve):
-    return 0
+def check(solve, hand, deck):
+    res = CardsCombination()
+    res.find_combination(solve, hand, deck)
+
 
 def solution(hand, deck, _hand=None, _deck=None):
     if _hand is None:
@@ -105,7 +128,7 @@ def solution(hand, deck, _hand=None, _deck=None):
                     solve[i] = _deck[0]
                     # print(solve, file=fp)
                     # print(solve)
-                    check(solve)
+                    check(solve, hand, deck)
                 solution(hand, deck, solve, _deck[1:])
     return
 
