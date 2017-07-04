@@ -14,15 +14,8 @@ stdin = ['A B C 1 2 3']
 #          '6C 9C 8C 2D 7C 2H TC 4C 9S AH',
 #          '3D 5S 2H QD TD 6S KH 9H AD QH']
 
-solve = list()
+# solve = list()
 combination = None
-
-def init_solve_list(solve, len):
-    # for i in range(0, len):
-    #     solve.index([None], i)
-    solve = [None] * len
-    return solve
-
 
 def solve_print(combination, hand, deck):
     print("Hand: ", end='')
@@ -33,41 +26,28 @@ def solve_print(combination, hand, deck):
     print(combination)
     exit(0)
 
-
 def check_straight_flush(solve, list):
     return 0
 
 def check(solve):
     return 0
 
-def solution(solve, hand, deck, i, j):
-    # for i in range(0, len(hand)):
-    #     for j in range(0, len(deck)):
-    return solve
-
-
-def index_not_in_b(a, b):
-    res = []
-    for i in range(len(a)):
-        if a[i] not in b:
-            res.append(i)
-    return res
-
-def solve2(aa, bb, b=None, start=None):
-    res = []
-    if not b and not start:
-        start = aa
-        res.extend(solve2(aa, bb, bb[:], start))
+def solution(hand, deck, solve=None, h=None):
+    if solve is None:
+        solve = [n for n in deck]
+        h = [n for n in hand]
+        solution(hand, deck, solve, h)
     else:
-        if len(b) == 0:
-            return []
-        for i in index_not_in_b(start, bb):
-            s = [x for x in start]
-            s[i] = b[0]
-            print("  " * (len(bb) - len(b)), s)
-            res.append(s)
-            res.extend(solve2(aa, bb, b[1:], s))
-    return res
+        if len(solve) == 0:
+            return
+        for i in range(0, len(hand)):
+            s = [n for n in h]
+            for j in range(0, len(s)):
+                if s[j] not in deck:
+                    s[i] = solve[0]
+            print(s)
+            solution(hand, deck, solve[1:], s)
+    return
 
 # for line in sys.stdin:
 for line in stdin:
@@ -75,12 +55,16 @@ for line in stdin:
     hand = line[0:len(line)/2]
     deck = line[len(line)/2:len(line)]
     # solve = init_solve_list(solve, len(deck))
-    if check_straight_flush(solve, hand):
-        solve_print(combination, hand, deck)
-    if check_straight_flush(solve, deck):
-        solve_print(combination, hand, deck)
-    n = 1
+    # if check_straight_flush(solve, hand):
+    #     solve_print(combination, hand, deck)
+    # if check_straight_flush(solve, deck):
+    #     solve_print(combination, hand, deck)
+
+    # solution(init_solve_list(solve, len(deck)), hand, deck)
+    # solve = lambda deck: [None] * len(deck)
+    solution(hand, deck)
+
+    # n = 1
     # solution(solve, hand, deck[0:len(deck) - n], n, 0, 0, 0)
     # solution(init_solve_list(solve, len(deck)), hand, deck, 0, 0)
-    res = solve2(hand, deck)
-    print(res)
+    # print(res)
