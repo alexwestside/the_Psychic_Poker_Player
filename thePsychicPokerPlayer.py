@@ -3,10 +3,6 @@
 from __future__ import print_function
 import sys
 
-class CardsCombination:
-
-
-
 
 # stdin = ['A B C 1 2 3']
 stdin = ['TH JH QC QD QS QH KH AH 2S 6S']
@@ -22,15 +18,74 @@ stdin = ['TH JH QC QD QS QH KH AH 2S 6S']
 combination = None
 fp = open('./test.txt', 'a')
 
+class CardsCombination:
+    comb_1 = 'straight-flush'
+    comb_2 = 'four-of-a-kind'
+    comb_3 = 'full-house'
+    comb_4 = 'flush'
+    comb_5 = 'straight'
+    comb_6 = 'three-of-a-kind'
+    comb_7 = 'two-pairs'
+    comb_8 = 'one-pair'
+    comb_9 = 'highest-card'
+    combination = None
 
-def solve_print(combination, hand, deck):
-    print("Hand: ", end='')
-    print(hand, end='')
-    print(" Deck: ", end='')
-    print(deck, end='')
-    print(" Best hand: ", end='')
-    print(combination)
-    exit(0)
+    def find_combination(self):
+        if self.straight_flush() == 1:
+            pass
+        elif self.four_of_a_kind() == 1:
+            pass
+        elif self.full_house() == 1:
+            pass
+        elif self.flush() == 1:
+            pass
+        elif self.straight() == 1:
+            pass
+        elif self.three_of_a_kind() == 1:
+            pass
+        elif self.two_pairs() == 1:
+            pass
+        elif self.one_pair() == 1:
+            pass
+        elif self.highest_card() == 1:
+            pass
+
+    def straight_flush(self):
+        return (1)
+
+    def four_of_a_kind(self):
+        return (1)
+
+    def full_house(self):
+        return (1)
+
+    def flush(self):
+        return (1)
+
+    def straight(self):
+        return (1)
+
+    def three_of_a_kind(self):
+        return (1)
+
+    def two_pairs(self):
+        return (1)
+
+    def one_pair(self):
+        return (1)
+
+    def highest_card(self):
+        return (1)
+    pass
+
+    def solve_print(self, hand, deck):
+        print("Hand: ", end='')
+        print(hand, end='')
+        print(" Deck: ", end='')
+        print(deck, end='')
+        print(" Best hand: ", end='')
+        print(combination)
+        exit(0)
 
 def check(solve):
     return 0
