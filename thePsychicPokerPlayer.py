@@ -1,24 +1,20 @@
 #!bin/user/python
 
-
 from __future__ import print_function
 import sys
 from collections import Counter
 
-# stdin = ['2H 2S 3H 3S 3C 2D 9C 3D 6C TH']
-stdin = ['AC 2D 9C 3S KD 5S 4D KS AS 4C']
-# stdin = [('TH JH QC QD QS QH KH AH 2S 6S'),
-#          ('2H 2S 3H 3S 3C 2D 3D 6C 9C TH'),
-#          ('2H 2S 3H 3S 3C 2D 9C 3D 6C TH'),
-#          ('2H AD 5H AC 7H AH 6H 9H 4H 3C'),
-#          ('AC 2D 9C 3S KD 5S 4D KS AS 4C'),
-#          ('KS AH 2H 3C 4H KC 2C TC 2D AS'),
-#          ('AH 2C 9S AD 3C QH KS JS JD KD'),
-#          ('6C 9C 8C 2D 7C 2H TC 4C 9S AH'),
-#          ('3D 5S 2H QD TD 6S KH 9H AD QH')]
+stdin = [('TH JH QC QD QS QH KH AH 2S 6S'),
+         ('2H 2S 3H 3S 3C 2D 3D 6C 9C TH'),
+         ('2H 2S 3H 3S 3C 2D 9C 3D 6C TH'),
+         ('2H AD 5H AC 7H AH 6H 9H 4H 3C'),
+         ('AC 2D 9C 3S KD 5S 4D KS AS 4C'),
+         ('KS AH 2H 3C 4H KC 2C TC 2D AS'),
+         ('AH 2C 9S AD 3C QH KS JS JD KD'),
+         ('6C 9C 8C 2D 7C 2H TC 4C 9S AH'),
+         ('3D 5S 2H QD TD 6S KH 9H AD QH')]
 
 fp = open('./test.txt', 'a')
-
 
 class CardsCombination:
     combination = {None: 0}
@@ -41,9 +37,8 @@ class CardsCombination:
                 self.combination.clear()
                 self.combination.update(self.combinations.get(id))
 
-    def find_combination(self, solve, hand, deck):
+    def find_combination(self, solve):
         if self.straight_flush(solve) is True:
-            # self.solve_print(self.combinations.get(1).keys()[0], hand, deck)
             self.make_choice(1)
         elif self.four_of_a_kind(solve) is True:
             self.make_choice(2)
@@ -59,18 +54,16 @@ class CardsCombination:
             self.make_choice(7)
         elif self.one_pair(solve) is True:
             self.make_choice(8)
-        elif self.highest_card(solve) is True:
+        elif self.highest_card() is True:
             self.make_choice(9)
 
     def straight_flush(self, solve):
-        # solve = ['TH', 'JH', 'QH', 'KH', 'AH']
         if self.flush(solve) is True:
             if self.straight(solve) is True:
                 return True
         return False
 
     def four_of_a_kind(self, solve):
-        # solve = ['2D', '3D', '3H', '3S', '3C']
         face = list()
         for card in solve:
             face.append(card[0])
@@ -90,7 +83,6 @@ class CardsCombination:
         suit = list()
         for card in solve:
             suit.append(card[1])
-        # t = len(set(suit))
         if len(set(suit)) != 1:
             return False
         return True
@@ -101,7 +93,6 @@ class CardsCombination:
             face.append(card[0])
         face = self.make_int_sequense(face)
         face = sorted(face)
-        # t = range(face[0], face[len(face) - 1] + 1)
         if face == range(face[0], face[len(face) - 1] + 1):
             return True
         return 0
@@ -137,15 +128,20 @@ class CardsCombination:
                 return True
         return False
 
-    def highest_card(self, solve):
+    def highest_card(self):
         return True
 
-    pass
-
     def make_int_sequense(self, face):
+        count = int(0)
         for i in range(0, len(face)):
             if face[i] == 'A':
-                face[i] = int(14)
+                for j in range(0, len(face)):
+                    if face[j] != 'A' and face[j] != 'K' and face[j] != 'Q' and face[j] != 'J' and face[j] != 'T':
+                        count += int(face[j])
+                if count == int(14):
+                    face[i] = int(1)
+                else:
+                    face[i] = int(14)
             elif face[i] == 'K':
                 face[i] = int(13)
             elif face[i] == 'Q':
@@ -165,14 +161,6 @@ class CardsCombination:
         print(deck, end='')
         print(" Best hand: ", end='')
         print(solve)
-        # exit(0)
-        # return
-
-
-# def check(solve, hand, deck):
-#     res = CardsCombination()
-#     res.find_combination(solve, hand, deck)
-
 
 def solution(hand, deck, _hand=None, _deck=None):
     if _hand is None:
@@ -187,19 +175,14 @@ def solution(hand, deck, _hand=None, _deck=None):
                 solve = [n for n in _hand]
                 if solve[i] not in deck:
                     solve[i] = _deck[0]
-                    # print(solve, file=fp)
-                    # print(solve)
-                    # check(solve, hand, deck)
-                    res.find_combination(solve, hand, deck)
+                    res.find_combination(solve)
                     solution(hand, deck, solve, _deck[1:])
     return
-
 
 # for line in sys.stdin:
 for line in stdin:
     res = CardsCombination()
     res.combination = {None: 0}
-    #     line = input()
     line = line.split(' ')
     hand = line[0:len(line) / 2]
     deck = line[len(line) / 2:len(line)]
