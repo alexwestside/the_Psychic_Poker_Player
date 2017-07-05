@@ -1,6 +1,7 @@
 #!bin/user/python
 
 from __future__ import print_function
+from collections import Counter
 import sys
 
 # stdin = ['A B C 1 2 3']
@@ -38,52 +39,65 @@ class CardsCombination:
                 self.combination.update(self.combinations.get(id))
 
     def find_combination(self, solve, hand, deck):
-        if self.straight_flush(solve) != 0:
+        if self.straight_flush(solve) is True:
             self.solve_print(self.combinations.get(1).values()[0], hand, deck)
-        elif self.four_of_a_kind(solve) != 0:
+        elif self.four_of_a_kind(solve) is True:
             self.make_choice(2)
-        elif self.full_house(solve) != 0:
+        elif self.full_house(solve) is True:
             self.make_choice(3)
-        elif self.flush(solve) != 0:
+        elif self.flush(solve) is True:
             self.make_choice(4)
-        elif self.straight(solve) != 0:
+        elif self.straight(solve) is True:
             self.make_choice(5)
-        elif self.three_of_a_kind(solve) != 0:
+        elif self.three_of_a_kind(solve) is True:
             self.make_choice(6)
-        elif self.two_pairs(solve) != 0:
+        elif self.two_pairs(solve) is True:
             self.make_choice(7)
-        elif self.one_pair(solve) != 0:
+        elif self.one_pair(solve) is True:
             self.make_choice(8)
-        elif self.highest_card(solve) != 0:
+        elif self.highest_card(solve) is True:
             self.make_choice(9)
 
     def straight_flush(self, solve):
         s = solve
-        return (0)
+        return 0
 
     def four_of_a_kind(self, solve):
-        return (2)
+        return 0
 
     def full_house(self, solve):
-        return (3)
+        return 0
 
     def flush(self, solve):
-        return (4)
+        suit = list()
+        for card in solve:
+            suit.append(card[1])
+        if len(set(suit)) != 1:
+            return 0
+        return 0
 
     def straight(self, solve):
-        return (5)
+        return 0
 
     def three_of_a_kind(self, solve):
-        return (6)
+        return 0
 
     def two_pairs(self, solve):
-        return (7)
+        return 0
 
     def one_pair(self, solve):
-        return (8)
+        face = list()
+        count = 0
+        for card in solve:
+            face.append(card[0])
+        face = dict(Counter(face)).values()
+        for i in face:
+            if i == 2:
+                count += 1
+        return 8 if count == 2 else 0
 
     def highest_card(self, solve):
-        return (9)
+        return 9
     pass
 
     def solve_print(self, solve, hand, deck):
