@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14e71b58-6ae4-48c4-abf0-a0369b2fe4f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thePsychicPokerPlayer.py" afterPath="$PROJECT_DIR$/thePsychicPokerPlayer.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,12 +20,10 @@
       <file leaf-file-name="thePsychicPokerPlayer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/thePsychicPokerPlayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="97" column="33" lean-forward="false" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+            <state relative-caret-position="525">
+              <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
               <folding>
                 <element signature="e#19#56#0" expanded="true" />
-                <marker date="1499269177229" expanded="true" signature="575:3320" ph="..." />
-                <marker date="1499269177229" expanded="true" signature="2730:3013" ph="..." />
               </folding>
             </state>
           </provider>
@@ -305,6 +302,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="14e71b58-6ae4-48c4-abf0-a0369b2fe4f2" name="Default" comment="" />
@@ -317,7 +317,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08901142" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -346,11 +346,21 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/thePsychicPokerPlayer.py</url>
-          <line>92</line>
-          <option name="timeStamp" value="77" />
+          <line>102</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/thePsychicPokerPlayer.py</url>
+          <line>110</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/thePsychicPokerPlayer.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="78" />
+      <option name="time" value="83" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -361,8 +371,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#56#0" expanded="true" />
-            <marker date="1499269177229" expanded="true" signature="575:3320" ph="..." />
-            <marker date="1499269177229" expanded="true" signature="2730:3013" ph="..." />
           </folding>
         </state>
       </provider>
@@ -405,8 +413,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#56#0" expanded="true" />
-            <marker date="1499269177229" expanded="true" signature="575:3320" ph="..." />
-            <marker date="1499269177229" expanded="true" signature="2730:3013" ph="..." />
           </folding>
         </state>
       </provider>
@@ -449,8 +455,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#56#0" expanded="true" />
-            <marker date="1499269177229" expanded="true" signature="575:3320" ph="..." />
-            <marker date="1499269177229" expanded="true" signature="2730:3013" ph="..." />
           </folding>
         </state>
       </provider>
@@ -477,8 +481,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#56#0" expanded="true" />
-            <marker date="1499269177229" expanded="true" signature="575:3320" ph="..." />
-            <marker date="1499269177229" expanded="true" signature="2730:3013" ph="..." />
           </folding>
         </state>
       </provider>
@@ -555,12 +557,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/thePsychicPokerPlayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="97" column="33" lean-forward="false" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+        <state relative-caret-position="525">
+          <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
           <folding>
             <element signature="e#19#56#0" expanded="true" />
-            <marker date="1499269177229" expanded="true" signature="575:3320" ph="..." />
-            <marker date="1499269177229" expanded="true" signature="2730:3013" ph="..." />
           </folding>
         </state>
       </provider>

@@ -4,8 +4,8 @@ from __future__ import print_function
 from collections import Counter
 import sys
 
-# stdin = ['A B C 1 2 3']
-stdin = ['TH JH QC QD QS QH KH AH 2S 6S']
+stdin = ['6C 9C 8C TD 7C 2H 2H TC 4C 9S AH']
+# stdin = ['TH JH QC QD QS QH KH AH 2S 6S']
 #          '2H 2S 3H 3S 3C 2D 3D 6C 9C TH',
 #          '2H 2S 3H 3S 3C 2D 9C 3D 6C TH',
 #          '2H AD 5H AC 7H AH 6H 9H 4H 3C',
@@ -59,33 +59,68 @@ class CardsCombination:
             self.make_choice(9)
 
     def straight_flush(self, solve):
-        s = solve
-        return 0
+        if self.flush(solve) is True:
+            if self.straight(solve) is True:
+                return 'straight_flush'
+        return False
 
     def four_of_a_kind(self, solve):
-        return 0
+        face = list()
+        for card in solve:
+            face.append(card[0])
+        face = dict(Counter(face)).values()
+        for i in face:
+            if i == 4:
+                return 'four_of_a_kind'
+        return False
 
     def full_house(self, solve):
-        return 0
+        if self.three_of_a_kind(solve) is True:
+            if self.one_pair(solve) is True:
+                return 'full_house'
+        return False
+        # face = list()
+        # count_3 = 0
+        # count_2 = 0
+        # for card in solve:
+        #     face.append(card[0])
+        # face = dict(Counter(face)).values()
+        # for i in face:
+        #     if i == 2:
+        #         count_2 += 1
+        #     if i == 3:
+        #         count_3 += 1
+        # return 'full_house' if count_2 == 1 and count_3 == 1 else False
 
     def flush(self, solve):
         suit = list()
         for card in solve:
             suit.append(card[1])
         if len(set(suit)) != 1:
-            return 0
-        return 0
+            return False
+        return 'flush'
 
     def straight(self, solve):
+        face = list()
+        for card in solve:
+            face.append(card[0])
+        face = sorted(face)
+
+        pass
+
         return 0
 
     def three_of_a_kind(self, solve):
-        return 0
+        face = list()
+        for card in solve:
+            face.append(card[0])
+        face = dict(Counter(face)).values()
+        for i in face:
+            if i == 3:
+                return 'three_of_a_kind'
+        return False
 
     def two_pairs(self, solve):
-        return 0
-
-    def one_pair(self, solve):
         face = list()
         count = 0
         for card in solve:
@@ -94,10 +129,20 @@ class CardsCombination:
         for i in face:
             if i == 2:
                 count += 1
-        return 8 if count == 2 else 0
+        return 'two_pairs' if count == 2 else False
+
+    def one_pair(self, solve):
+        face = list()
+        for card in solve:
+            face.append(card[0])
+        face = dict(Counter(face)).values()
+        for i in face:
+            if i == 2:
+                return 'one_pair'
+        return False
 
     def highest_card(self, solve):
-        return 9
+        return 'highest_card'
     pass
 
     def solve_print(self, solve, hand, deck):
