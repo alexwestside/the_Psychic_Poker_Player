@@ -150,7 +150,6 @@ class CardsCombination:
         print(" Best hand: ", end='')
         print(solve)
 
-
 def check_straight_flush(hand, deck, res):
     if res.straight_flush(hand) is True or res.straight_flush(deck) is True:
         return True
