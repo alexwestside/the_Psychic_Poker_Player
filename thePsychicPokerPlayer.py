@@ -144,9 +144,9 @@ class CardsCombination:
 
     def solve_print(self, solve, hand, deck):
         print("Hand: ", end='')
-        print(hand, end='')
+        for n in hand: print(n + ' ', end='')
         print(" Deck: ", end='')
-        print(deck, end='')
+        for n in deck: print(n + ' ', end='')
         print(" Best hand: ", end='')
         print(solve)
 
