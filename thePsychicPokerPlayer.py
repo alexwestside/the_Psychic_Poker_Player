@@ -150,6 +150,11 @@ class CardsCombination:
         print(" Best hand: ", end='')
         print(solve)
 
+
+def check_straight_flush(hand, deck, res):
+    if res.straight_flush(hand) is True or res.straight_flush(deck) is True:
+        return True
+
 def solution(hand, deck, _hand=None, _deck=None):
     if _hand is None:
         _hand = [n for n in hand]
@@ -165,14 +170,19 @@ def solution(hand, deck, _hand=None, _deck=None):
                     solve[i] = _deck[0]
                     res.find_combination(solve)
                     solution(hand, deck, solve, _deck[1:])
+                    if res.combination.keys()[0] == 'straight-flush':
+                        return
     return
 
 for line in sys.stdin:
     res = CardsCombination()
     res.combination = {None: 0}
-    line = line.split(' ')
+    line = line.strip().split(' ')
     hand = line[0:len(line) / 2]
     deck = line[len(line) / 2:len(line)]
-    res.combinations(hand)
-    solution(hand, deck)
+    if check_straight_flush(hand, deck, res) is True:
+        res.solve_print('straight-flush', hand, deck)
+        continue
+    else:
+        solution(hand, deck)
     res.solve_print(res.combination.keys()[0], hand, deck)
